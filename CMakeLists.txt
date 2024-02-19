@@ -5,8 +5,12 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("vulkan_guide")
 
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
 
 find_package(Vulkan REQUIRED)
+find_package(SDL2 REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS})
 
 add_subdirectory(third_party)
 
