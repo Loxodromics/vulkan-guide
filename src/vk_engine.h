@@ -33,6 +33,12 @@ public:
 	//array of image-views from the swapchain
 	std::vector<VkImageView> _swapchainImageViews;
 
+	VkQueue _graphicsQueue; //queue we will submit to
+	uint32_t _graphicsQueueFamily; //family of that queue
+
+	VkCommandPool _commandPool; //the command pool for our commands
+	VkCommandBuffer _mainCommandBuffer; //the buffer we will record into
+
 	//initializes everything in the engine
 	void init();
 
@@ -50,4 +56,5 @@ public:
 private:
 
 	void init_vulkan();
+	void init_commands();
 };
