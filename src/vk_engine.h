@@ -6,6 +6,22 @@
 #include <vk_types.h>
 #include <vector>
 
+class PipelineBuilder {
+public:
+
+	std::vector<VkPipelineShaderStageCreateInfo> _shaderStages;
+	VkPipelineVertexInputStateCreateInfo _vertexInputInfo;
+	VkPipelineInputAssemblyStateCreateInfo _inputAssembly;
+	VkViewport _viewport;
+	VkRect2D _scissor;
+	VkPipelineRasterizationStateCreateInfo _rasterizer;
+	VkPipelineColorBlendAttachmentState _colorBlendAttachment;
+	VkPipelineMultisampleStateCreateInfo _multisampling;
+	VkPipelineLayout _pipelineLayout;
+
+	VkPipeline build_pipeline(VkDevice device, VkRenderPass pass);
+};
+
 class VulkanEngine {
 public:
 
@@ -46,6 +62,10 @@ public:
 	VkSemaphore _presentSemaphore, _renderSemaphore;
 	VkFence _renderFence;
 
+	VkPipelineLayout _trianglePipelineLayout;
+
+	VkPipeline _trianglePipeline;
+
 	//initializes everything in the engine
 	void init();
 
@@ -62,9 +82,16 @@ public:
 
 private:
 
+	VkShaderModule triangleFragShader;
+	VkShaderModule triangleVertexShader;
+
 	void init_vulkan();
 	void init_commands();
 	void init_default_renderpass();
 	void init_framebuffers();
 	void init_sync_structures();
+
+	//loads a shader module from a spir-v file. Returns false if it errors
+	bool load_shader_module(const char* filePath, VkShaderModule* outShaderModule);
+	void init_pipelines();
 };
