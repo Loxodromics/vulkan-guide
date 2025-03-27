@@ -65,6 +65,9 @@ public:
 	VkPipelineLayout _trianglePipelineLayout;
 
 	VkPipeline _trianglePipeline;
+	VkPipeline _redTrianglePipeline;
+
+	int _selectedShader{ 0 };
 
 	//initializes everything in the engine
 	void init();
@@ -84,6 +87,8 @@ private:
 
 	VkShaderModule triangleFragShader;
 	VkShaderModule triangleVertexShader;
+	VkShaderModule redTriangleFragShader;
+	VkShaderModule redTriangleVertexShader;
 
 	void init_vulkan();
 	void init_commands();
