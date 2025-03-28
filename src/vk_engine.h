@@ -5,10 +5,16 @@
 
 #include <vk_types.h>
 #include <vk_mesh.h>
+#include <glm/glm.hpp>
+
 #include <vector>
 #include <functional>
 #include <deque>
 
+struct MeshPushConstants {
+	glm::vec4 data;
+	glm::mat4 render_matrix;
+};
 
 struct DeletionQueue
 {
@@ -85,6 +91,7 @@ public:
 	VkFence _renderFence;
 
 	VkPipelineLayout _trianglePipelineLayout;
+	VkPipelineLayout _meshPipelineLayout;
 
 	VkPipeline _trianglePipeline;
 	VkPipeline _redTrianglePipeline;
@@ -97,6 +104,8 @@ public:
 
 	VkPipeline _meshPipeline;
 	Mesh _triangleMesh;
+
+
 
 	//initializes everything in the engine
 	void init();
