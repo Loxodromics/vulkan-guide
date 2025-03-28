@@ -4,9 +4,11 @@
 #pragma once
 
 #include <vk_types.h>
+#include <vk_mesh.h>
 #include <vector>
 #include <functional>
 #include <deque>
+
 
 struct DeletionQueue
 {
@@ -91,6 +93,11 @@ public:
 
 	DeletionQueue _mainDeletionQueue;
 
+	VmaAllocator _allocator; //vma lib allocators
+
+	VkPipeline _meshPipeline;
+	Mesh _triangleMesh;
+
 	//initializes everything in the engine
 	void init();
 
@@ -104,6 +111,10 @@ public:
 	void run();
 
 	void init_swapchain();
+
+	void load_meshes();
+
+	void upload_mesh(Mesh& mesh);
 
 private:
 
