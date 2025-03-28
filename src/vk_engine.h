@@ -104,7 +104,7 @@ public:
 
 	VkPipeline _meshPipeline;
 	Mesh _triangleMesh;
-
+	Mesh _monkeyMesh;
 
 
 	//initializes everything in the engine
